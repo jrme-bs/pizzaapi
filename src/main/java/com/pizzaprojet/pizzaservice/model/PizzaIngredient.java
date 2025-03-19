@@ -1,9 +1,11 @@
 package com.pizzaprojet.pizzaservice.model;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import jakarta.persistence.*;
 
 @Data
+@EqualsAndHashCode(exclude = "pizza")
 @Entity
 @Table(name = "pizza_ingredients")
 public class PizzaIngredient {

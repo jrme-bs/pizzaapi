@@ -95,6 +95,11 @@ public class PizzaService {
         dto.setDescription(pizza.getDescription());
         dto.setPhotoUrl(pizza.getPhotoUrl());
         dto.setPrice(pizza.getPrix());
+        List<Long> ingredientIds = pizzaIngredientRepository.findByPizzaId(pizza.getId())
+                .stream()
+                .map(PizzaIngredient::getIngredientId)
+                .collect(Collectors.toList());
+        dto.setIngredientIds(ingredientIds);
         return dto;
     }
 
