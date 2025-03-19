@@ -40,10 +40,10 @@ public class PizzaService {
 
     public PizzaDTO createPizza(PizzaCreateDTO createDTO) {
         Pizza pizza = new Pizza();
-        pizza.setNom(createDTO.getName());
+        pizza.setNom(createDTO.getNom());
         pizza.setDescription(createDTO.getDescription());
         pizza.setPhotoUrl(createDTO.getPhotoUrl());
-        pizza.setPrix(createDTO.getPrice());
+        pizza.setPrix(createDTO.getPrix());
 
         Pizza savedPizza = pizzaRepository.save(pizza);
 
@@ -61,10 +61,10 @@ public class PizzaService {
         Pizza pizza = pizzaRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Pizza non trouvée avec l'ID: " + id));
 
-        if (updateDTO.getName() != null) pizza.setNom(updateDTO.getName());
+        if (updateDTO.getNom() != null) pizza.setNom(updateDTO.getNom());
         if (updateDTO.getDescription() != null) pizza.setDescription(updateDTO.getDescription());
         if (updateDTO.getPhotoUrl() != null) pizza.setPhotoUrl(updateDTO.getPhotoUrl());
-        if (updateDTO.getPrice() != null) pizza.setPrix(updateDTO.getPrice());
+        if (updateDTO.getPrix() != null) pizza.setPrix(updateDTO.getPrix());
 
         Pizza updatedPizza = pizzaRepository.save(pizza);
 
@@ -91,10 +91,10 @@ public class PizzaService {
     private PizzaDTO convertToDTO(Pizza pizza) {
         PizzaDTO dto = new PizzaDTO();
         dto.setId(pizza.getId());
-        dto.setName(pizza.getNom());
+        dto.setNom(pizza.getNom());
         dto.setDescription(pizza.getDescription());
         dto.setPhotoUrl(pizza.getPhotoUrl());
-        dto.setPrice(pizza.getPrix());
+        dto.setPrix(pizza.getPrix());
         List<Long> ingredientIds = pizzaIngredientRepository.findByPizzaId(pizza.getId())
                 .stream()
                 .map(PizzaIngredient::getIngredientId)
@@ -106,10 +106,10 @@ public class PizzaService {
     private PizzaDetailDTO convertToDetailDTO(Pizza pizza) {
         PizzaDetailDTO dto = new PizzaDetailDTO();
         dto.setId(pizza.getId());
-        dto.setName(pizza.getNom());
+        dto.setNom(pizza.getNom());
         dto.setDescription(pizza.getDescription());
         dto.setPhotoUrl(pizza.getPhotoUrl());
-        dto.setPrice(pizza.getPrix());
+        dto.setPrix(pizza.getPrix());
 
         List<Long> ingredientIds = pizzaIngredientRepository.findByPizzaId(pizza.getId())
                 .stream()

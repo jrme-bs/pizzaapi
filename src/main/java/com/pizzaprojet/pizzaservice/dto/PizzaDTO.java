@@ -7,9 +7,9 @@ import java.util.List;
 @Data
 public class PizzaDTO {
     private Long id;
-    private String name;
+    private String nom;
     private String description;
     private String photoUrl;
-    private BigDecimal price;
+    private BigDecimal prix;
     private List<Long> ingredientIds;
 }
